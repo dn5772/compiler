@@ -1,0 +1,20 @@
+{
+	"files.associations": {
+		"*.cpp": "cpp",
+		"__locale": "c",
+		"cstddef": "c",
+		"ios": "c",
+		"limits": "c",
+		"locale": "c",
+		"new": "c",
+		"string": "c",
+		"variant": "c",
+		"stdio.h": "c",
+		"__bit_reference": "c",
+		"bitset": "c",
+		"__memory": "c",
+		"ratio": "c",
+		"tuple": "c",
+		"stdlib.h": "c"
+	}
+}
