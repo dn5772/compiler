@@ -1,6 +1,6 @@
 int main(int argc, char *argv[])
 {
-	int a = 1;
+	int a = 1, i;
 	switch(a) {
 		case 1:
 			break;
@@ -9,10 +9,7 @@ int main(int argc, char *argv[])
 		default:
 			break;
 	}
-	
 	if (a == 1) {a = 2;}
-
-	int i = 0;
 	
 	for (i = 0; i < 10; ++i)
 	{
