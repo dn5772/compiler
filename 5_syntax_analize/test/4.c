@@ -9,7 +9,7 @@ enum ee {
 	zero,
 	one,
 	seven = 2 + 5
-} kim;
+} num;
 
 typedef enum {false, true} BOOLEAN;
 BOOLEAN a = true;

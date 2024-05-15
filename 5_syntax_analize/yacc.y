@@ -435,7 +435,7 @@ void print_current_id_list () {
 	printf("NULL\n");
 }
 int yyerror(char*s) {
-	printf("\nline %d: %s near %s \n", line_no, s, yytext);
+	printf("\nline %d: %s near %s in yyerror\n", line_no, s, yytext);
 	exit(1);
 }
 
