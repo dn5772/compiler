@@ -2890,10 +2890,14 @@ int yywrap() {return(1);}
 
 void main() {
 	initialize();
+
 	yyparse();
 
-	if (syntax_error) exit(1);
-
-	print_ast(root); 
+	/* if (syntax_error) exit(1); */
+	if (!syntax_err) {
+		printf("syntax analysis end (no error)\n");
+		print_ast(root); // "print.c" function
+	}
+	/* print_ast(root); */
 	exit(0);
 }
