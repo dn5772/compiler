@@ -446,7 +446,7 @@ void main() {
 
 	yyparse();
 
-	if (syntax_error!){
+	if (!syntax_error){
 		printf("no error\n");
 		print_ast(root); // "print.c" function
 	}
