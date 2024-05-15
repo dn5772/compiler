@@ -2893,10 +2893,9 @@ void main() {
 
 	yyparse();
 
-	if (!syntax_error){
+	if (!syntax_err) {
 		printf("no error\n");
 		print_ast(root); // "print.c" function
 	}
 	/* print_ast(root); */
-	exit(0);
 }
