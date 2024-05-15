@@ -189,7 +189,7 @@ A_SPECIFIER *updateSpecifier(A_SPECIFIER *p, A_TYPE *t, S_KIND s) { // merge & u
 			if (p->type == t)
 				;
 			else
-				syntax_error(24);
+				syntax_error(24, "");
 		else
 			p -> type = t;
 	if (s) {
@@ -197,7 +197,7 @@ A_SPECIFIER *updateSpecifier(A_SPECIFIER *p, A_TYPE *t, S_KIND s) { // merge & u
 			if (s == p -> stor)
 				;
 			else
-				syntax_error(24);
+				syntax_error(24, "");
 		else
 			p -> stor = s;
 	}
@@ -281,12 +281,12 @@ A_ID *setFunctionDeclaratorSpecifier (A_ID *id, A_SPECIFIER *p) { // check funct
 	A_ID *a;
 	// check storage class
 	if (p -> stor)
-		syntax_error(25);
+		syntax_error(25, "");
 
 	setDefaultSpecifier(p);
 	// check function identifier immediately before '('
 	if (id -> type == 0 || id -> type -> kind != T_FUNC) {
-		syntax_error(21);
+		syntax_error(21, "");
 		return (id);
 	} else {
 		id = setDeclaratorElementType(id, p -> type);
@@ -309,7 +309,7 @@ A_ID *setFunctionDeclaratorSpecifier (A_ID *id, A_SPECIFIER *p) { // check funct
 		if (strlen(a -> name))
 			current_id = a;
 		else if (a -> type)
-			syntax_error(23);
+			syntax_error(23, "");
 		a = a -> link;
 	}
 	return (id);
@@ -348,7 +348,7 @@ A_ID *setParameterDeclaratorSpecifier (A_ID *id, A_SPECIFIER *p) { // set declar
 		syntax_error(12, id -> name);
 	// check parameter storage class && void type
 	if (p -> stor || p -> type == void_type)
-		syntax_error(14);
+		syntax_error(14, "");
 	setDefaultSpecifier(p);
 	id = setDeclaratorElementType(id, p -> type);
 	id -> kind = ID_PARM;
@@ -371,7 +371,7 @@ A_ID *setStructDeclaratorListSpecifier(A_ID *id, A_TYPE *t) {
 A_TYPE *setTypeNameSpecifier (A_TYPE *t, A_SPECIFIER *p) { // set type name specifier
 	// check storage class in type name
 	if (p -> stor)
-		syntax_error(20);
+		syntax_error(20, "");
 	setDefaultSpecifier(p);
 	t = setTypeElementType(t, p -> type);
 	return (t);
@@ -494,7 +494,7 @@ void initialize() {
 		setDeclaratorTypeAndKind(makeDummyIdentifier(),int_type,ID_PARM)),ID_FUNC);
 }
 
-void syntax_error(int i,char *s) {
+void syntax_error(int i, char *s) {
 	syntax_err++;
 	printf("line %d: syntax error: ", line_no);
 

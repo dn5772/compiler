@@ -2893,9 +2893,11 @@ void main() {
 
 	yyparse();
 
-	/* if (syntax_error) exit(1); */
-	if (!syntax_err) {
-		printf("syntax analysis end (no error)\n");
+	if (syntax_error){
+		exit(1);
+	} 
+	else {
+		printf("no error\n");
 		print_ast(root); // "print.c" function
 	}
 	/* print_ast(root); */
