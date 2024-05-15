@@ -4,9 +4,18 @@ delim	[ \t]
 line	[\n]
 ws		{delim}+
 %{
-	#include "yacc.tab.h"
+	#define YYSTYPE_IS_DECLARED 1
+	#define YYSTYPE long
+
+	#include "y.tab.h"
+	#include "type.h"
 	#include <string.h>
-	extern int line_no;
+
+	extern int line_no, syntex_err;
+	extern YYSTYPE yylval;
+	extern A_ID *current_id;
+
+	char *makeString();
 	int checkIdentifier();
 %}
 %%
@@ -30,11 +39,12 @@ switch {return(SWITCH_SYM);}
 typedef {return(TYPEDEF_SYM);}
 union {return(UNION_SYM);}
 while {return(WHILE_SYM);}
-register {return(REGISTER_SYM);}
+%{
+/* register {return(REGISTER_SYM);}
 extern {return(EXTERN_SYM);}
 const {return(CONST_SYM);}
-volatile {return(VOLATILE_SYM);}
-
+volatile {return(VOLATILE_SYM);} */
+%}
 "++" {return(PLUSPLUS);}
 "--" {return(MINUSMINUS);}
 "->" {return(ARROW);}
@@ -65,27 +75,47 @@ volatile {return(VOLATILE_SYM);}
 "+" {return(PLUS);}
 "-" {return(MINUS);}
 "=" {return(ASSIGN);}
-{digit}+ {return(INTEGER_CONSTANT);}
-{digit}+\.{digit}+ {return(FLOAT_CONSTANT);}
+{digit}+ {yylval = atoi(yytext); return(INTEGER_CONSTANT);}
+{digit}+\.{digit}+ {yylval = makeString(yytext); return(FLOAT_CONSTANT);}
 {letter}({letter}|{digit})* {return(checkIdentifier(yytext));}
-\"([^"\n]|\\["\n])*\" {return(STRING_LITERAL);}
-\'([^'\n]|\'\')\' {return(CHARACTER_CONSTANT);}
-
-"?" {return(QUEST);}
+\"([^"\n]|\\["\n])*\" {yylval = makeString(yytext); return(STRING_LITERAL);}
+\'([^'\n]|\'\')\' {yylval = *(yytext+1); return(CHARACTER_CONSTANT);}
+%{
+/* "?" {return(QUEST);}
 "^" {return(XOR);}
 "~" {return(TILDE);}
 "|" {return(BAR);}
 "<<" {return(LSHIFT);}
-">>" {return(RSHIFT);}
+">>" {return(RSHIFT);} */%}
 "//"[^\n]* { }
 
 %%
 
+char *makeString(char *s) {
+	char *t;
+	t = malloc(strlen(s)+1);
+	strcpy(t,s);
+	return(t);
+}
 int checkIdentifier(char *s){
-	char *table[]={"int", "float", "char", "void"};
-	for (int i=0; i<sizeof(table)/sizeof(table[0]); i++){
-		if (!strcmp(table[i], s))
-			return(TYPE_IDENTIFIER);
+	A_ID *id;
+	char *t;
+	id = current_id;
+	while(id){
+		if(strcmp(id->name, s)==0)
+			break;
+		id = id->prev;
 	}
-	return IDENTIFIER;
+	if (id==0){
+		yylval=makeString(s);
+		return IDENTIFIER;
+	}
+	else if(id->kind==ID_TYPE){
+		yylval = id->type;
+		return(TYPE_IDENTIFIER);
+	}
+	else{
+		yylval = id->name;
+		return IDENTIFIER;
+	}
 }
