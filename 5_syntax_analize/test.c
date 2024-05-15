@@ -1,6 +1,6 @@
 auto float a;
-const cc= ' ';
 int i1, i2, i3 = 1;	// comma, init_declarator cheack
+char c ();
 
 int func (int c, ...){
 	a = 10;
