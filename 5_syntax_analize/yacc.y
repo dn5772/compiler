@@ -443,7 +443,7 @@ int yywrap() {return(1);}
 
 void main() {
 	initialize();
-	yyparse()
+	yyparse();
 
 	if (syntax_error) exit(1);
 
