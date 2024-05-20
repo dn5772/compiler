@@ -1,4 +1,4 @@
-void func(int aa, float bb);
+int func(int , float);
 
 int main(){
 	int a;
@@ -8,6 +8,6 @@ int main(){
 	return 0;
 }
 
-void func(int a, float b) {
-	a+b;
+int func(int a, float b){
+	return func(a, b);
 }
