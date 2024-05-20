@@ -1,6 +1,6 @@
 void func(int, float);
-int main()
-{
+
+int main(){
 	int a;
 	float b;
 	func(a, b);
@@ -9,5 +9,5 @@ int main()
 }
 
 void func(int a, float b) {
-	func(a, b);
+	a+b;
 }
