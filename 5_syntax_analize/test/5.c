@@ -17,8 +17,8 @@ int func2(){
 int func3(){
 	int a = 5, b = 1;
 	int AA = a || b; int BB = a && b;
-	int LSS = a > b; int GTR = a < b;
-	int GEQ = a <= b; int LEQ = a >= b;
+	int LSS = a < b; int GTR = a > b;
+	int GEQ = a >= b; int LEQ = a <= b;
 	int EQL = a == b; int NEQ = a != b;
 }
 int func4(){
