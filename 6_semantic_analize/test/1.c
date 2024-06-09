@@ -1,10 +1,7 @@
 int a=0, b=1;
 // int func ();
 
-struct s { 
-	int a; 
-	struct s b;
-} d;
+struct s { int a; struct x{int y; struct s g;} b; int c; } d;
 
 int func (int c, ...){
 	int a;
