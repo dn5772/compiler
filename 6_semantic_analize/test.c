@@ -1,13 +1,7 @@
 int i;
 struct s { int a; struct x{int y; struct s g;} b; int c; } d;
 
-enum t {
-	a,
-	b, 
-	c = 23,
-	d,
-	e = 'e'
-};
+enum {zero, seven=2+7, eigth}e;
 
 float fun (int a, int b){
 	int c,d;
