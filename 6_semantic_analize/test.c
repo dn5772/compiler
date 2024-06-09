@@ -6,7 +6,7 @@ enum t {
 	b, 
 	c = 23,
 	d,
-	e = 'e',
+	e = 'e'
 };
 
 float fun (int a, int b){
