@@ -18,6 +18,8 @@
 
 	extern int line_no;
 	extern int syntax_err;
+	extern int semantic_err;
+
 	extern A_NODE *root;
 	extern A_ID *current_id;
 	extern int current_level;
@@ -443,12 +445,16 @@ int yywrap() {return(1);}
 
 void main() {
 	initialize();
- 
 	yyparse();
 
 	if (!syntax_err) {
 		printf("no error\n");
 		print_ast(root); // "print.c" function
 	}
-	/* print_ast(root); */
+
+	if (!semantic_err){
+		printf("no error\n");
+		print_sem_ast(root); // "print_sem.c" function
+	}
+
 }
