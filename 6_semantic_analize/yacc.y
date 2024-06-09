@@ -452,6 +452,7 @@ void main() {
 		print_ast(root); // "print.c" function
 	}
 
+    semantic_analysis(root);
 	if (!semantic_err){
 		printf("no error\n");
 		print_sem_ast(root); // "print_sem.c" function
