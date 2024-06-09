@@ -14,7 +14,6 @@ int main(){
 	int a[10];
 	int b[20];
 	a[0] = b[10];
-	float *fp1;
-	int *ip;
+
 	return 0;
 }
