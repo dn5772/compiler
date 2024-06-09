@@ -1,13 +1,10 @@
 int a=0, b=1;
-int func ();
+// int func ();
 
-struct s;
-struct t {
-	struct s *f;
-};
-struct s {
-	int a;
-}ss;
+struct s { 
+	int a; 
+	struct s b;
+} d;
 
 int func (int c, ...){
 	int a;
@@ -21,5 +18,9 @@ int func (int c, ...){
 			}
 		}
 	}
+	return 0;
+}
+
+int main(){
 	return 0;
 }
