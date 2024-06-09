@@ -630,6 +630,9 @@ int sem_A_TYPE(A_TYPE *t)
 		case T_STRUCT:
 			id=t->field; 
 			while (id) {
+				if(t->size == 0){
+					semantic_error(80,t->line)
+				}
 				result+=sem_declaration(id,result);
 				id = id->link; 
 			} 
