@@ -12,7 +12,6 @@
 
 	#include "type.h"
 	#include "sup_func.h"
-	#include "semantic.h"
 
 	#include <stdio.h>
 	#include <stdlib.h>
