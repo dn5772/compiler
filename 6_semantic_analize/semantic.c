@@ -630,7 +630,7 @@ int sem_A_TYPE(A_TYPE *t)
 		case T_STRUCT:
 			id=t->field; 
 			while (id) {
-				if(t->size == 0){
+				if(id->kind == T_STRUCT && id->type->size==0){
 					semantic_error(84,t->line,id->name);
 				}
 				result+=sem_declaration(id,result);
