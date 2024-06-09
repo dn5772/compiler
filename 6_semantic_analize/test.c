@@ -1,13 +1,13 @@
 int i;
 struct s { int a; struct x{int y; struct s g;} b; int c; } d;
 
-enum t {
-	a,
-	b, 
-	c = 23,
-	d,
-	e = 'e',
-};
+// enum t {
+// 	a,
+// 	b, 
+// 	c = 23,
+// 	d,
+// 	e = 'e',
+// };
 
 int main(){
 	i = 10;
