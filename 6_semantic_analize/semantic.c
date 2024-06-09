@@ -631,7 +631,7 @@ int sem_A_TYPE(A_TYPE *t)
 			id=t->field; 
 			while (id) {
 				if(t->size == 0){
-					semantic_error(80,t->line);
+					semantic_error(84,t->line,id->name);
 				}
 				result+=sem_declaration(id,result);
 				id = id->link; 
@@ -1196,11 +1196,10 @@ A_LITERAL getTypeAndValueOfExpression(A_NODE *node) {
 		default :
 			semantic_error(90,node->line);
 			break; 
-	}// close switch statement
+	}
 	return (result);
 }
 
-// simplified error procedure.
 void semantic_error(int i, int ll, char *s) {
 	semantic_err++;
 	printf("ERROR num: %d, line: %d, identifier: %s\n",i, ll, s);
