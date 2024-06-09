@@ -9,7 +9,6 @@ float fun (int a, int b){
 }
 
 int main(){
-	i = 10;
 	int a[10];
 	int b[20];
 	a[0] = b[10];
